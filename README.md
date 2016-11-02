@@ -25,12 +25,14 @@ boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
 - mvn package
 - change the #hashtag you want to query on twitter and your twitter credentials in [manifest.yml](/manifest.yml)
 
-```env:
+```
+env:
   twitter_query: '#HillaryClinton'
   twitter_oauth_consumerKey: **ENTER YOUR** Consumer Key
   twitter_oauth_consumerSecret: **ENTER YOUR** Consumer Secret
   twitter_oauth_accessToken: ENTER **YOUR Access** Token
-  twitter_oauth_accessTokenSecret: **ENTER YOUR** Access Token Secret>```
+  twitter_oauth_accessTokenSecret: **ENTER YOUR** Access Token Secret
+```
 
 # Run the app local
 
