@@ -17,7 +17,8 @@ boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
 - visualizes the sentiment analysis result in realtime in a dashboard view
 - visualizes the sentiment analysis result in a report view  
 
-# Quick start
+# Run it on PCF
+
 - clone the repo
 - cd boot-twitter-sentiment
 - sh
@@ -35,7 +36,7 @@ env:
 ```
 - cf push
 
-# Run the app local
+# Run it local
 
 - rabbitmq-server
 - mysql.server start
