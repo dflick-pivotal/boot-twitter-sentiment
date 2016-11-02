@@ -15,7 +15,7 @@ boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
 [boot-twitter-visualizer](/boot-twitter-visualizer):
 - receives the tweet sentiment analysis via rabbit and sends it in realtime via websocket to all connected browsers.
 - visualizes the sentiment analysis result in realtime in a dashboard view
-- visualizes the sentiment analysis result in in a report view  
+- visualizes the sentiment analysis result in a report view  
 
 # Quick start
 - clone the repo
