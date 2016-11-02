@@ -32,4 +32,13 @@ boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
   twitter_oauth_accessToken: ENTER **YOUR Access** Token
   twitter_oauth_accessTokenSecret: **ENTER YOUR** Access Token Secret>```
 
-- cf push
+# Run the app local
+
+- rabbitmq-server
+- mysql.server start
+- mysql -uroot
+- create database twitter;
+- cd spring-boot-visualizer
+- mvn spring-boot:run
+- cd spring-boot-feeder
+- mvn spring-boot:run
