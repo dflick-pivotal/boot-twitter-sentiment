@@ -42,7 +42,15 @@ env:
 - mysql.server start
 - mysql -uroot
 - create database twitter;
+- export MAVEN_OPTS=-Xmx1024m -XX:MaxPermSize=128M
 - cd spring-boot-visualizer
 - mvn spring-boot:run
 - cd spring-boot-feeder
+```
+export twitter_query='#greenday'
+export twitter_oauth_consumerKey= **ENTER YOUR** Consumer Key
+export twitter_oauth_consumerSecret= **ENTER YOUR** Consumer Secret
+export twitter_oauth_accessToken= ENTER **YOUR Access** Token
+export twitter_oauth_accessTokenSecret= **ENTER YOUR** Access
+```
 - mvn spring-boot:run
