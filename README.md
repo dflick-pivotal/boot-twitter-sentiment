@@ -33,6 +33,7 @@ env:
   twitter_oauth_accessToken: ENTER **YOUR Access** Token
   twitter_oauth_accessTokenSecret: **ENTER YOUR** Access Token Secret
 ```
+- cf push
 
 # Run the app local
 
