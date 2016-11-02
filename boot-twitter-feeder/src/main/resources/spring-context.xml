@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-twitter="http://www.springframework.org/schema/integration/twitter"
+	xmlns:int-amqp="http://www.springframework.org/schema/integration/amqp"
+	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:twitter="http://www.springframework.org/schema/social/twitter"
+	xmlns:cloud="http://www.springframework.org/schema/cloud"
+	xmlns:int-jdbc="http://www.springframework.org/schema/integration/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud.xsd
+		http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd
+		http://www.springframework.org/schema/integration/amqp http://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd
+		http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/social/twitter http://www.springframework.org/schema/social/spring-social-twitter.xsd
+		http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/twitter http://www.springframework.org/schema/integration/twitter/spring-integration-twitter.xsd">
+
+
+	<context:property-placeholder location="classpath:oauth.properties" />
+
+	<!-- Spring Social - Twitter -->
+	<bean id="twitterTemplate"
+		class="org.springframework.social.twitter.api.impl.TwitterTemplate">
+		<constructor-arg value="${twitter.oauth.consumerKey}" />
+		<constructor-arg value="${twitter.oauth.consumerSecret}" />
+		<constructor-arg value="${twitter.oauth.accessToken}" />
+		<constructor-arg value="${twitter.oauth.accessTokenSecret}" />
+	</bean>
+
+	<!-- Spring Integration -->
+	<int-twitter:search-inbound-channel-adapter
+		id="searchAdapter" channel="fromTwitter"
+		query="#{systemEnvironment['twitter_query'] ?: '#pivotal'}"
+		twitter-template="twitterTemplate">
+		<int:poller fixed-rate="3000" max-messages-per-poll="5" />
+	</int-twitter:search-inbound-channel-adapter>
+
+	<int:channel id="fromTwitter" />
+	<int:channel id="toTransformer" />
+	<int:channel id="toRabbit" />
+	<int:channel id="db"></int:channel>
+
+	<int:filter input-channel="fromTwitter" output-channel="toTransformer"
+		ref="tweetFilter">
+	</int:filter>
+
+	<int:transformer input-channel="toTransformer"
+		output-channel="afterTransformer" ref="tdt" method="transform" />
+
+	<int-amqp:outbound-channel-adapter
+		channel="toRabbit" amqp-template="amqpTemplate" exchange-name="twitter.exchange" />
+
+<!-- NEW -->
+	<int-jdbc:outbound-channel-adapter
+		query="insert into tweet_data (tweet, created_at, sentiment) values(:payload.tweet, :payload.createdAt, :payload.sentiment)"
+		data-source="dataSource" channel="db" />
+
+	<int:recipient-list-router id="customRouter"
+		input-channel="afterTransformer">
+		<int:recipient channel="toRabbit" />
+		<int:recipient channel="db" />
+	</int:recipient-list-router>
+
+<!-- NEW -->
+	<!-- Beans -->
+	<bean id="msgConverter"
+		class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" />
+	<bean id="tweetFilter" class="io.pivotal.twitter.feeder.filter.TweetLanguageSelector" />
+	<bean id="tdt" class="io.pivotal.twitter.feeder.transformer.TweetTransformer" />
+	<bean id="nlp" class="io.pivotal.twitter.feeder.service.NLP"
+		init-method="init" />
+
+	<!-- Infrastructure -->
+	<rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+		exchange="twitter.exchange" message-converter="msgConverter" />
+
+	<rabbit:admin connection-factory="connectionFactory" />
+
+	<rabbit:fanout-exchange name="twitter.exchange">
+	</rabbit:fanout-exchange>
+
+	<!-- Infrastructure -->
+	<beans profile="dev">
+		<rabbit:connection-factory id="connectionFactory"
+			host="localhost" password="guest" username="guest" />
+	</beans>
+
+	<beans profile="cloud">
+		<cloud:rabbit-connection-factory id="connectionFactory" />
+	</beans>
+
+</beans>

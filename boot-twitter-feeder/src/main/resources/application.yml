@@ -1,0 +1,25 @@
+logging:
+  level:
+    org:
+      springframework:
+        boot: info
+        
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+---
+
+spring:
+  profiles: dev    
+  datasource:
+    url: jdbc:mysql://localhost/twitter
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    
+---
+
+spring:
+  profiles: cloud
