@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int-amqp="http://www.springframework.org/schema/integration/amqp"
+	xmlns:int-jdbc="http://www.springframework.org/schema/integration/jdbc"
+	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cloud="http://www.springframework.org/schema/cloud"
+	xsi:schemaLocation="http://www.springframework.org/schema/cloud http://www.springframework.org/schema/cloud/spring-cloud-0.1.xsd
+		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
+		http://www.springframework.org/schema/integration/amqp http://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd
+		http://www.springframework.org/schema/integration/jdbc http://www.springframework.org/schema/integration/jdbc/spring-integration-jdbc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+
+	<!-- Spring Integration -->
+	<int-amqp:inbound-channel-adapter
+		channel="fromRabbit" queue-names="#{@twitterQueue.name}"
+		connection-factory="connectionFactory" message-converter="msgConverter" />
+	<int:channel id="fromRabbit"></int:channel>
+
+<!-- 	<int:outbound-channel-adapter ref="/events"
+		method="onTweetDataReceived" channel="websocket" />  -->
+	<int:outbound-channel-adapter ref="/events"
+		method="onTweetDataReceived" channel="fromRabbit" />
+
+	<websocket:handlers>
+		<websocket:mapping path="/events" handler="eventHandler" />
+		<websocket:sockjs />
+	</websocket:handlers>
+	<bean id="eventHandler" name="/events"
+		class="io.pivotal.twitter.visualizer.service.UIEventHandler" />
+
+	<bean id="objMapper"
+		class="org.springframework.integration.support.json.Jackson2JsonObjectMapper" />
+	<bean id="msgConverter"
+		class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" />
+
+
+	<rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+		message-converter="msgConverter" />
+
+	<rabbit:admin connection-factory="connectionFactory" />
+
+	<rabbit:queue id="twitterQueue" />
+	<rabbit:fanout-exchange name="twitter.exchange">
+		<rabbit:bindings>
+			<rabbit:binding queue="twitterQueue" />
+		</rabbit:bindings>
+	</rabbit:fanout-exchange>
+
+	<!-- query="insert into tweet_data (tweet, created_at, sentiment) values(:payload[#{ 
+		T(com.pivotal.sentiment.model.TweetData).getTweet()}], :payload[#{T(com.pivotal.sentiment.model.TweetData).createdAt}], 
+		:payload[#{T(com.pivotal.sentiment.model.TweetData).sentiment}])" -->
+	<!-- query="insert into tweet_data (tweet, created_at, sentiment) values('Tweet 
+		200','Time 200', 1)" -->
+<!--	<int-jdbc:outbound-channel-adapter
+ 		query="insert into tweet_data (tweet, created_at, sentiment) values(:payload.tweet, :payload.createdAt, :payload.sentiment)"
+		data-source="dataSource" channel="db" />
+
+	<int:recipient-list-router id="customRouter"
+		input-channel="fromRabbit">
+		<int:recipient channel="websocket" />
+		<int:recipient channel="db" />
+	</int:recipient-list-router>
+
+	<int:channel id="websocket"></int:channel>
+	<int:channel id="db"></int:channel>
+ -->
+	<!-- Infrastructure -->
+	<beans profile="dev">
+		<rabbit:connection-factory id="connectionFactory"
+			host="localhost" password="guest" username="guest" />
+	</beans>
+
+	<beans profile="cloud">
+		<cloud:rabbit-connection-factory id="connectionFactory" />
+	</beans>
+
+</beans>
