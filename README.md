@@ -10,6 +10,7 @@ boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
 - queries twitter for tweets with a certain hashtag
 - tweet sentiment analysis with [CoreNLP](http://nlp.stanford.edu/software/corenlp.shtml) library
 - sends the tweet sentiment analysis result to a db and to rabbit
+- spring integration-graph
 ![GitHub Logo](/images/feeder-spring-integration.png)
 
 [boot-twitter-visualizer](/boot-twitter-visualizer):
@@ -42,7 +43,6 @@ env:
 - mysql.server start
 - mysql -uroot
 - create database twitter;
-- export MAVEN_OPTS=-Xmx1024m -XX:MaxPermSize=128M
 - cd spring-boot-visualizer
 - mvn spring-boot:run
 - cd spring-boot-feeder
