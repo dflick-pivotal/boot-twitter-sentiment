@@ -1,7 +1,14 @@
 package io.pivotal.twitter.visualizer.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.Cloud;
 import org.springframework.cloud.service.ServiceInfo;
 import org.springframework.core.env.Environment;
@@ -11,14 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import io.pivotal.twitter.visualizer.model.ApplicationInfo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class InfoController {
+	
+	@Value("${twitter_query}")
+	String twitter_query;
+
     @Autowired(required = false)
     private Cloud cloud;
 
@@ -67,14 +72,13 @@ public class InfoController {
     
     private String getTwitterQuery()
     {
-		String s = System.getProperty("twitter_query");
-		if(s == null)
+		if(twitter_query == null)
 		{
 			return "'#Pivotal'";
 		}
 		else
 		{
-			return "'"+s+"'";
+			return "'"+twitter_query+"'";
 		}
 
     }
