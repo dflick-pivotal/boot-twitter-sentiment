@@ -1,0 +1,25 @@
+---
+instances: 1
+applications:
+- name: visualizer
+  host: visualizer
+  path: ./boot-twitter-visualizer/target/boot-twitter-visualizer-0.0.1-SNAPSHOT.jar
+  memory: 512M
+  services:
+  - rabbit
+  - db
+#- name: feeder
+#  host: feeder
+#  no-route: true
+#  path: ./boot-twitter-feeder/target/boot-twitter-feeder-0.0.1-SNAPSHOT.jar
+#  memory: 1G
+#  services:
+#  - rabbit
+#  - db
+env:
+  twitter_query: '#ford'
+#  twitter_query: '#MercedesMe'
+  twitter_oauth_consumerKey: 6vGomcsjCCKZdYXqlhIwoPE2T
+  twitter_oauth_consumerSecret: nBNyYMEPaxt3W1np9IJ5H4PoL5OzWDKygZU9cbC6SnC0GCUmPY
+  twitter_oauth_accessToken: 2179211691-KJkdqFVxSk6UA7EexDi9uHiFf6HDccuY8Io38PW
+  twitter_oauth_accessTokenSecret: oSXcNRREGA6RHGxKDffeKYOcdcpcoXgWmGQw1ffKME4C6
