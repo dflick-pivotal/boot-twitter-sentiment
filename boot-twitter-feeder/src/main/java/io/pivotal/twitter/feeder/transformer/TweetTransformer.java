@@ -72,6 +72,7 @@ public class TweetTransformer {
         if(temp.length() < 5)
         	return 2;
         
+//        System.out.println("################ Tweet: "+ temp);
 		// Analyze sentiment
 		return NLP.findSentiment(temp);
 	}
