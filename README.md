@@ -7,7 +7,7 @@ Project: Pivotal CF natural language processing (NLP) of twitter tweets.
 boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
 
 [boot-twitter-feeder](/boot-twitter-feeder):
-- queries twitter for tweets with a certain hashtag
+- [queries twitter](https://dev.twitter.com/rest/public/search) ( ex. for tweets with a certain hashtag)
 - tweet sentiment analysis with [CoreNLP](http://nlp.stanford.edu/software/corenlp.shtml) library
 - sends the tweet sentiment analysis result to a db and to rabbit
 - spring integration-graph
@@ -17,6 +17,14 @@ boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
 - receives the tweet sentiment analysis via rabbit and sends it in realtime via websocket to all connected browsers.
 - visualizes the sentiment analysis result in realtime in a dashboard view
 - visualizes the sentiment analysis result in a report view  
+
+# Twitter Limitations
+Please, be aware that the number of tweets allowed to gather per hour from twitter is per default limited.
+After the limit is reached no more tweets are gathered for some time. 
+
+# Prerequisites
+
+Please, use your own twitter credentials. You get them here: https://apps.twitter.com/app/new
 
 # Run it on PCF
 
