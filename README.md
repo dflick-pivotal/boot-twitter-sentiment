@@ -20,7 +20,7 @@ boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
 
 # Twitter Limitations
 Please, be aware that the number of tweets allowed to gather per hour from twitter is per default limited.
-After the limit is reached no more tweets are gathered for some time. 
+After the limit is reached no more tweets are gathered for some time.
 
 # Prerequisites
 
@@ -56,9 +56,9 @@ env:
 - cd spring-boot-feeder
 ```
 export twitter_query='#greenday'
-export twitter_oauth_consumerKey= **ENTER YOUR** Consumer Key
-export twitter_oauth_consumerSecret= **ENTER YOUR** Consumer Secret
-export twitter_oauth_accessToken= ENTER **YOUR Access** Token
-export twitter_oauth_accessTokenSecret= **ENTER YOUR** Access
+export twitter_oauth_consumerKey=**ENTER YOUR** Consumer Key
+export twitter_oauth_consumerSecret=**ENTER YOUR** Consumer Secret
+export twitter_oauth_accessToken=**ENTER YOUR** Access Token
+export twitter_oauth_accessTokenSecret=**ENTER YOUR** AccessTokenSecret
 ```
 - mvn spring-boot:run
