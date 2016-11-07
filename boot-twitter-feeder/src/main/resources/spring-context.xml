@@ -24,8 +24,6 @@
 		http://www.springframework.org/schema/integration/twitter http://www.springframework.org/schema/integration/twitter/spring-integration-twitter.xsd">
 
 
-	<context:property-placeholder location="classpath:oauth.properties" />
-
 	<!-- Spring Social - Twitter -->
 	<bean id="twitterTemplate"
 		class="org.springframework.social.twitter.api.impl.TwitterTemplate">
