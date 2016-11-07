@@ -21,7 +21,7 @@ import io.pivotal.twitter.visualizer.model.ApplicationInfo;
 @Controller
 public class InfoController {
 	
-	@Value("${twitter_query:#Pivotal}")
+	@Value("${twitter_query:#pivotal}")
 	String twitter_query;
 
     @Autowired(required = false)
@@ -72,14 +72,6 @@ public class InfoController {
     
     private String getTwitterQuery()
     {
-		if(twitter_query == null)
-		{
-			return "'#Pivotal'";
-		}
-		else
-		{
-			return "'"+twitter_query+"'";
-		}
-
+		return "'"+twitter_query+"'";
     }
 }
