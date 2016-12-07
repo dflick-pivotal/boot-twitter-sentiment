@@ -13,4 +13,4 @@ jobs:
   - get: boot-twitter-sentiment
     trigger: true
   - task: test
-    file: boot-twitter-sentiment/ci/tasks/test.yml
+    file: boot-twitter-sentiment/concourse/tasks/test.yml
