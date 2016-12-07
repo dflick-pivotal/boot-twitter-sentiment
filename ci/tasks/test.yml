@@ -12,7 +12,7 @@ inputs:
 
 run:
   path: mvn
-  args: ["package"]
+  args: ["-f", "boot-twitter-sentiment/pom.xml", "package"]
 
 params:
   TERM: -dumb
