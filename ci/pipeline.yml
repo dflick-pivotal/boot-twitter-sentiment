@@ -14,3 +14,12 @@ jobs:
     trigger: true
   - task: test
     file: boot-twitter-sentiment/ci/tasks/test.yml
+
+- name: package
+  plan:
+  - get: boot-twitter-sentiment
+    trigger: true
+    passed:
+      - test-app
+  - task: package
+    file: quotes-service/ci/tasks/package.yml
