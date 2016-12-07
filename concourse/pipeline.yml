@@ -1,0 +1,16 @@
+---
+resources:
+- name: boot-twitter-sentiment
+  type: git
+  source:
+    uri: {{git-uri}}
+    branch: concourse
+
+jobs:
+- name: testSrc
+  build_logs_to_retain: 5
+  plan:
+  - get: boot-twitter-sentiment
+    trigger: true
+  - task: test
+    file: boot-twitter-sentiment/ci/tasks/test.yml
