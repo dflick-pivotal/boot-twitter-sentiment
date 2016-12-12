@@ -11,7 +11,7 @@ inputs:
   - name: boot-twitter-sentiment
 
 outputs:
-  - name: boot-twitter-sentiment
+  - name: boot-twitter-sentiment-built
 
 run:
   path: mvn
