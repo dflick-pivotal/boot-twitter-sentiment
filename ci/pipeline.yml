@@ -22,4 +22,4 @@ jobs:
     passed:
       - test-app
   - task: package
-    file: quotes-service/ci/tasks/package.yml
+    file: boot-twitter-sentiment/ci/tasks/package.yml
