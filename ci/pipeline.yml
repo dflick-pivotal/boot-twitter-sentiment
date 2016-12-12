@@ -35,4 +35,4 @@ jobs:
     file: boot-twitter-sentiment/ci/tasks/package.yml
   - put: deployment
     params:
-      manifest: boot-twitter-sentiment/manifest.yml
+      manifest: boot-twitter-sentiment/manifest-ci.yml
