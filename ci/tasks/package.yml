@@ -15,7 +15,7 @@ outputs:
 
 run:
   path: mvn
-  args: ["-f", "boot-twitter-sentiment/pom.xml", "package"]
+  args: ["-f", "boot-twitter-sentiment/pom.xml", "-DskipTests=true", "package"]
 
 params:
   TERM: -dumb
