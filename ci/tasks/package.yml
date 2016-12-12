@@ -10,9 +10,6 @@ image_resource:
 inputs:
   - name: boot-twitter-sentiment
 
-outputs:
-  - name: build
-
 run:
   path: mvn
   args: ["-f", "boot-twitter-sentiment/pom.xml", "-DskipTests=true", "package"]

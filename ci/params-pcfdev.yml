@@ -1,0 +1,13 @@
+git-uri: https://github.com/dflick-pivotal/boot-twitter-sentiment.git
+cf-api: https://api.local.pcfdev.io
+cf-username: user
+cf-password: pass
+cf-org: pcfdev-org
+cf-space: pcfdev-space
+cf-ssl: true
+appname: boot-twitter-sentiment
+create-fresh-space: <<blank or anything e.g. y>>
+git-ssh-uri: git@github.com:dflick-pivotal/boot-twitter-sentiment.git
+git-user: <<your github user id>>
+git-key: |-
+  <<your github private key>>

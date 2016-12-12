@@ -6,6 +6,16 @@ resources:
     uri: {{git-uri}}
     branch: concourse
 
+- name: deployment
+  type: cf
+  source:
+    api: {{cf-api}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: {{cf-space}}
+    skip_cert_check: true
+
 jobs:
 - name: test-app
   build_logs_to_retain: 5
@@ -23,3 +33,6 @@ jobs:
       - test-app
   - task: package
     file: boot-twitter-sentiment/ci/tasks/package.yml
+  - put: deployment
+    params:
+      manifest: boot-twitter-sentiment/manifest.yml
