@@ -22,15 +22,15 @@ jobs:
   plan:
   - get: boot-twitter-sentiment
     trigger: true
-  - task: test
-    file: boot-twitter-sentiment/ci/tasks/test.yml
+  # - task: test
+    # file: boot-twitter-sentiment/ci/tasks/test.yml
 
 - name: package
   plan:
   - get: boot-twitter-sentiment
     trigger: true
     passed:
-      - test-app
+      # - test-app
   - task: package
     file: boot-twitter-sentiment/ci/tasks/package.yml
   - put: deployment

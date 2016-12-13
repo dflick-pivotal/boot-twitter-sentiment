@@ -12,10 +12,15 @@ inputs:
 
 outputs:
   - name: boot-twitter-sentiment-built
-
+  
 run:
-  path: mvn
-  args: ["-f", "boot-twitter-sentiment/pom.xml", "-DskipTests=true", "package"]
+  path: sh
+  args:
+  - -exc
+  - |
+    cd boot-twitter-sentiment && mvn package -DskipTests=true
+    cp boot-twitter-visualizer/target/boot-twitter-visualizer-0.0.1-SNAPSHOT.jar ../boot-twitter-sentiment-built/boot-twitter-visualizer-0.0.1-SNAPSHOT.jar
+    cp boot-twitter-feeder/target/boot-twitter-feeder-0.0.1-SNAPSHOT.jar ../boot-twitter-sentiment-built/boot-twitter-feeder-0.0.1-SNAPSHOT.jar
 
 params:
   TERM: -dumb
