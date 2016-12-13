@@ -19,7 +19,7 @@ applications:
 env:
   twitter_query: '#ford'
 #  twitter_query: '#MercedesMe'
-  twitter_oauth_consumerKey: your_consumerKey
-  twitter_oauth_consumerSecret: you_consumerSecret
-  twitter_oauth_accessToken: your_accessToken
-  twitter_oauth_accessTokenSecret: your_accessTokenSecret
+  twitter_oauth_consumerKey: ss3GVQGp2UWwk69ln8jMUPzjG
+  twitter_oauth_consumerSecret: G3l3GY0ESYblPbeNwLXQ8l4PmoKHPWu5OB5PCHETbSXxznfHv4
+  twitter_oauth_accessToken: 2179211691-WkvqFQyZoEuFsUCLCvxqNvfGXkfaJF7ohackgMY
+  twitter_oauth_accessTokenSecret: bsNl3YMQM5xarVQIhiO57srqQWPQdwCtd77ijOqtdhXnL
