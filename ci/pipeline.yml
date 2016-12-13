@@ -63,7 +63,7 @@ jobs:
     params:
       manifest: boot-twitter-sentiment/manifest.yml
       service: p-mysql
-      plan: 512mb
+      plan: 500mb
       instance_name: db
   - put: create-rabbitmq-service
     params:
