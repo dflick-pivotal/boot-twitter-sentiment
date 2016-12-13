@@ -1,4 +1,10 @@
 ---
+resource_types:
+  - name: cf-service-resource
+    type: docker-image
+    source:
+      repository: idahobean/cf-service-resource
+
 resources:
 - name: boot-twitter-sentiment
   type: git
@@ -16,23 +22,55 @@ resources:
     space: {{cf-space}}
     skip_cert_check: true
 
+- name: create-mysql-service
+  type: cf-service-resource
+  source:
+    api: {{cf-api}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: {{cf-space}}
+    skip_cert_check: true
+
+- name: create-rabbitmq-service
+  type: cf-service-resource
+  source:
+    api: {{cf-api}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: {{cf-space}}
+    skip_cert_check: true
+
 jobs:
 - name: test-app
   build_logs_to_retain: 5
   plan:
   - get: boot-twitter-sentiment
     trigger: true
-  # - task: test
-    # file: boot-twitter-sentiment/ci/tasks/test.yml
+  - task: test
+    file: boot-twitter-sentiment/ci/tasks/test.yml
 
 - name: package
   plan:
   - get: boot-twitter-sentiment
     trigger: true
     passed:
-      # - test-app
+      - test-app
   - task: package
     file: boot-twitter-sentiment/ci/tasks/package.yml
+  - put: create-mysql-service
+    params:
+      manifest: boot-twitter-sentiment/manifest.yml
+      service: p-mysql
+      plan: 512mb
+      instance_name: db
+  - put: create-rabbitmq-service
+    params:
+      manifest: boot-twitter-sentiment/manifest.yml
+      service: p-rabbitmq
+      plan: standard
+      instance_name: rabbit
   - put: deployment
     params:
       manifest: boot-twitter-sentiment/manifest-ci.yml
