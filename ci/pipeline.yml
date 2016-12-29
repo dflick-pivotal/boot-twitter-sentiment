@@ -22,17 +22,7 @@ resources:
     space: {{cf-space}}
     skip_cert_check: true
 
-- name: create-mysql-service
-  type: cf-service-resource
-  source:
-    api: {{cf-api}}
-    username: {{cf-username}}
-    password: {{cf-password}}
-    organization: {{cf-org}}
-    space: {{cf-space}}
-    skip_cert_check: true
-
-- name: create-rabbitmq-service
+- name: create-services
   type: cf-service-resource
   source:
     api: {{cf-api}}
@@ -59,22 +49,28 @@ jobs:
       - test-app
   - task: package
     file: boot-twitter-sentiment/ci/tasks/package.yml
-  - put: create-mysql-service
+  - put: create-services
     params:
       manifest: boot-twitter-sentiment/manifest.yml
       service: p-mysql
-      plan: 500mb
+      plan: {{mysql-plan}}
       instance_name: db
       skip_restage: true
       skip_binding: true
-  - put: create-rabbitmq-service
+  - put: create-services
     params:
       manifest: boot-twitter-sentiment/manifest.yml
       service: p-rabbitmq
-      plan: standard
+      plan: {{rabbit-plan}}
       instance_name: rabbit
       skip_restage: true
       skip_binding: true
   - put: deployment
     params:
       manifest: boot-twitter-sentiment/manifest-ci.yml
+      environment_variables:
+        twitter_query: {{twitter_query}}
+        twitter_oauth_consumerKey: {{twitter_oauth_consumerKey}}
+        twitter_oauth_consumerSecret: {{twitter_oauth_consumerSecret}}
+        twitter_oauth_accessToken: {{twitter_oauth_accessToken}}
+        twitter_oauth_accessTokenSecret: {{twitter_oauth_accessTokenSecret}}
