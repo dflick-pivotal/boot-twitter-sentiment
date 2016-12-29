@@ -62,3 +62,14 @@ export twitter_oauth_accessToken=**ENTER YOUR** Access Token
 export twitter_oauth_accessTokenSecret=**ENTER YOUR** AccessTokenSecret
 ```
 - mvn spring-boot:run
+
+
+# Concourse
+
+This branch contains a complete [concourse](http://concourse.ci) pipeline. Please find the relevant pipeline in [pipeline.yml](/ci/pipeline.yml).
+In the [ci](/ci) directory you'll also find an [example](/ci/params-example.yml) params file as well as one prepared for [pcfdev](/ci/params-pcfdev.yml). 
+
+Please make a copy of [params-sample.yml](/ci/params-sample.yml) and rename it to `params.yml`. This will ensure your credentials do not get checked in, as params.yml is *not* being tracked by git.
+Adjust `params.yml` to your needs, do not forget to fill in your twitter credentials and the `twitter_query` as the pipeline will not read it from the [manifest-ci.yml](/manifest-ci.yml).
+
+You can then login to your target with `fly -t lite login` and apply your pipeline with `fly -t lite set-pipeline -p boot-twitter-sentiment -c ci/pipeline.yml --load-vars-from ci/params.yml`. You might need to unpause your pipeline, but you're ready to take off!
