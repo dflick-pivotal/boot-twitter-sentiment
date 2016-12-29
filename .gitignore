@@ -54,3 +54,6 @@ local.properties
 .recommenders/
 
 **/target/**
+
+# Concourse
+ci/params.yml
