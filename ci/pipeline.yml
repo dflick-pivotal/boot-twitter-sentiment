@@ -3,7 +3,7 @@ resource_types:
   - name: cf-service-resource
     type: docker-image
     source:
-      repository: idahobean/cf-service-resource
+      repository: hivelogic/cf-service-resource
 
 resources:
 - name: boot-twitter-sentiment
@@ -65,12 +65,16 @@ jobs:
       service: p-mysql
       plan: 512mb
       instance_name: db
+      skip_restage: true
+      skip_binding: true
   - put: create-rabbitmq-service
     params:
       manifest: boot-twitter-sentiment/manifest.yml
       service: p-rabbitmq
       plan: standard
       instance_name: rabbit
+      skip_restage: true
+      skip_binding: true
   - put: deployment
     params:
       manifest: boot-twitter-sentiment/manifest-ci.yml
