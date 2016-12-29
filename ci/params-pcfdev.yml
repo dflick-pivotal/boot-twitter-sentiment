@@ -4,10 +4,12 @@ cf-username: user
 cf-password: pass
 cf-org: pcfdev-org
 cf-space: pcfdev-space
-cf-ssl: true
 appname: boot-twitter-sentiment
-create-fresh-space: <<blank or anything e.g. y>>
-git-ssh-uri: git@github.com:dflick-pivotal/boot-twitter-sentiment.git
-git-user: <<your github user id>>
-git-key: |-
-  <<your github private key>>
+rabbit-plan: standard
+mysql-plan: 512mb
+
+twitter_query: '#yourquery'
+twitter_oauth_consumerKey: your_consumerKey
+twitter_oauth_consumerSecret: you_consumerSecret
+twitter_oauth_accessToken: your_accessToken
+twitter_oauth_accessTokenSecret: your_accessTokenSecret
