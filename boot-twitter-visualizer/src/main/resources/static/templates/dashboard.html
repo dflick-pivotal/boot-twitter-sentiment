@@ -142,7 +142,7 @@
 			xhr.send();
 		};
 
-		getJSON('/tweet_data', function(tweet_data) {
+		getJSON('/tweet_data/search/top', function(tweet_data) {
 			
 			for(var i=0;i<tweet_data._embedded.tweet_data.length;i++){
 //			alert('Tweet: ' + tweet_data._embedded.tweet_data[i].tweet);
