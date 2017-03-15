@@ -17,7 +17,7 @@ applications:
   - rabbit
   - db
 env:
-  twitter_query: '#MercedesMe'
+  twitter_query: '#MercedesMe' 
   twitter_oauth_consumerKey: your_consumerKey
   twitter_oauth_consumerSecret: you_consumerSecret
   twitter_oauth_accessToken: your_accessToken
