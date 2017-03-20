@@ -144,7 +144,8 @@
 
 		getJSON('/tweet_data/search/top', function(tweet_data) {
 			
-			for(var i=0;i<tweet_data._embedded.tweet_data.length;i++){
+//			for(var i=0;i<tweet_data._embedded.tweet_data.length;i++){
+		    for(var i=tweet_data._embedded.tweet_data.length-1;i>=0;i--){
 //			alert('Tweet: ' + tweet_data._embedded.tweet_data[i].tweet);
 			
 			var data = tweet_data._embedded.tweet_data[i]; 

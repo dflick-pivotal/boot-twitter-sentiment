@@ -29,6 +29,6 @@ import io.pivotal.twitter.model.TweetData;
 		Page<TweetData> findBySentiment(@Param("q") int sentiment, Pageable pageable);
 		
 		@RestResource(path = "top", rel = "top")
-		List<TweetData> findFirst20ByOrderById();
+		List<TweetData> findFirst20ByOrderByIdDesc();
 	}
 	
