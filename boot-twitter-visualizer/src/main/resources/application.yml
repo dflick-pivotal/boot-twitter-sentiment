@@ -1,8 +1,20 @@
+endpoints:
+  sensitive: true
+  
+management:
+  cloudfoundry:
+    skip-ssl-validation: true
+  info:
+    git:
+      mode: full
+      
 logging:
   level:
     org:
       springframework:
-        boot: info
+        web:
+          servlet:
+            DispatcherServlet: DEBUG
         
 server:
   port: 8081
