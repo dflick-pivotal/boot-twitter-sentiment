@@ -14,10 +14,14 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import io.pivotal.twitter.model.TweetData;
+import io.pivotal.twitter.visualizer.service.SentimentService;
 
 
 @Component
 public class UIEventHandler extends TextWebSocketHandler{
+
+	@Autowired
+	private SentimentService sentimentService;
 
 	@Autowired
 	private Jackson2JsonObjectMapper objMap;
@@ -35,6 +39,7 @@ public class UIEventHandler extends TextWebSocketHandler{
  
     public void onTweetDataReceived(TweetData td) {
     	System.out.println(">>> onStatsReceived was invoked with " + td.toString());
+    	sentimentService.doStats();
     	for (WebSocketSession session : sessions.values()) {
             if (session != null && session.isOpen()) {
                 try {
