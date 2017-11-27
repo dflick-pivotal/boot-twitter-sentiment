@@ -152,12 +152,12 @@
 			if (data != "") {
 				$('#data' + entries).html(
 						"<td>" + smiley[data.sentiment] + "</td><td>"
-								+ data.createdAt + "</td><td>" + data.tweet
+								+ data.createdAt + "</td><td>" + data.tweet.autoLink()
 								+ "</td>");
 				$('#tweet_tab').prepend(
 						'<tr id="data' + (entries + 1) + '"></tr>');
 				entries++;
-				updateLineChart(entries, data.sentiment, data.tweet);
+				updateLineChart(entries, data.sentiment, data.tweet.autoLink());
 				updateColumnChart(data.sentiment);
 			}
 
@@ -185,12 +185,12 @@
 			if (data != "") {
 				$('#data' + entries).html(
 						"<td>" + smiley[data.sentiment] + "</td><td>"
-								+ data.createdAt + "</td><td>" + data.tweet
+								+ data.createdAt + "</td><td>" + data.tweet.autoLink()
 								+ "</td>");
 				$('#tweet_tab').prepend(
 						'<tr id="data' + (entries + 1) + '"></tr>');
 				entries++;
-				updateLineChart(entries, data.sentiment, data.tweet);
+				updateLineChart(entries, data.sentiment, data.tweet.autoLink());
 				updateColumnChart(data.sentiment);
 			}
 		};
