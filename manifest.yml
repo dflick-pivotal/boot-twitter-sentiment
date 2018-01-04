@@ -16,6 +16,7 @@ applications:
   services:
   - rabbit
   - db
+  - sentimentr
 env:
   twitter_query: '#ford'
 #  twitter_query: '#MercedesMe'
