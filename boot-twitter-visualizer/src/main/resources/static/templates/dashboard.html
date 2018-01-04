@@ -10,26 +10,18 @@
 	//// Chart
 	var dpsLine = []; // dataPoints
 	var dpsColumn = [ {
-		x : 10,
-		y : 0,
-		label : "Very Negative"
-	}, {
-		x : 20,
+//		x : 10,
 		y : 0,
 		label : "Negative"
 	}, {
-		x : 30,
+//		x : 20,
 		y : 0,
 		label : "Neutral"
 	}, {
-		x : 40,
+//		x : 30,
 		y : 0,
 		label : "Positive"
-	}, {
-		x : 50,
-		y : 0,
-		label : "Very Positive"
-	} ];
+	}  ];
 	var lineChart;
 	var columnChart;
 
@@ -65,37 +57,25 @@
 	}
 
 	var updateColumnChart = function(sentiment) {
-		if (sentiment === 0) {
+		if (sentiment === 1) {
 			dpsColumn.splice(0, 1, {
-				x : 10,
-				y : dpsColumn[sentiment].y + 1,
-				label : "Very Negative"
-			});
-		} else if (sentiment === 1) {
-			dpsColumn.splice(1, 1, {
-				x : 20,
-				y : dpsColumn[sentiment].y + 1,
+//				x : 10,
+				y : dpsColumn[sentiment-1].y + 1,
 				label : "Negative"
 			});
 		} else if (sentiment === 2) {
-			dpsColumn.splice(2, 1, {
-				x : 30,
-				y : dpsColumn[sentiment].y + 1,
+			dpsColumn.splice(1, 1, {
+//				x : 20,
+				y : dpsColumn[sentiment-1].y + 1,
 				label : "Neutral"
 			});
 		} else if (sentiment === 3) {
-			dpsColumn.splice(3, 1, {
-				x : 40,
-				y : dpsColumn[sentiment].y + 1,
+			dpsColumn.splice(2, 1, {
+//				x : 30,
+				y : dpsColumn[sentiment-1].y + 1,
 				label : "Positive"
 			});
-		} else if (sentiment === 4) {
-			dpsColumn.splice(4, 1, {
-				x : 50,
-				y : dpsColumn[sentiment].y + 1,
-				label : "Very Positive"
-			});
-		}
+		} 
 
 		columnChart.render();
 	}

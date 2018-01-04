@@ -73,8 +73,6 @@
 		class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" />
 	<bean id="tweetFilter" class="io.pivotal.twitter.feeder.filter.TweetLanguageSelector" />
 	<bean id="tdt" class="io.pivotal.twitter.feeder.transformer.TweetTransformer" />
-	<bean id="nlp" class="io.pivotal.twitter.feeder.service.NLP"
-		init-method="init" />
 
 	<!-- Infrastructure -->
 	<rabbit:template id="amqpTemplate" connection-factory="connectionFactory"

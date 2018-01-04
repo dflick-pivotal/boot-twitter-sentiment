@@ -3,21 +3,20 @@ package io.pivotal.twitter.feeder.transformer;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.util.StringUtils;
 
 import com.twitter.Extractor;
 
-import io.pivotal.twitter.feeder.service.NLP;
+import io.pivotal.fe.sentimentr.client.facade.SentimentrFacade;
 import io.pivotal.twitter.model.TweetData;
 
 public class TweetTransformer {
 	
 	@Autowired
-	NLP nlp;
-	
+	SentimentrFacade facade;	
 
 	public TweetData transform(Tweet t) {
 		TweetData td = new TweetData();
@@ -74,6 +73,6 @@ public class TweetTransformer {
         
 //        System.out.println("################ Tweet: "+ temp);
 		// Analyze sentiment
-		return NLP.findSentiment(temp);
+		return facade.getSentimentAsNumber(temp);
 	}
 }

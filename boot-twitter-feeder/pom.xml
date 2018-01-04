@@ -22,11 +22,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<corenlp.version>3.3.1</corenlp.version>
 		<twitter.text.version>1.6.1</twitter.text.version>		
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>io.pivotal.twitter.text-processing.connector</groupId>
+			<artifactId>text-processing-connector</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -79,18 +83,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<!-- Stanford CoreNLP -->
-		<dependency>
-			<groupId>edu.stanford.nlp</groupId>
-			<artifactId>stanford-corenlp</artifactId>
-			<version>${corenlp.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>edu.stanford.nlp</groupId>
-			<artifactId>stanford-corenlp</artifactId>
-			<version>${corenlp.version}</version>
-			<classifier>models</classifier>
 		</dependency>
 		<!-- Twitter Text -->
 		<dependency>

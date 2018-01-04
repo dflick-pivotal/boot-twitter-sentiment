@@ -9,6 +9,7 @@
 	<packaging>pom</packaging>
  
 	<modules>
+		<module>text-processing-connector</module>
 		<module>boot-twitter-visualizer</module>
 		<module>boot-twitter-feeder</module>
 	</modules>
