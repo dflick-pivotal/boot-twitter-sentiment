@@ -1,6 +1,6 @@
 # boot-twitter-sentiment
 
-Project: Pivotal CF natural language processing (NLP) of twitter tweets.
+Project: Pivotal CF sentiment analysis of twitter tweets.
 
 ![GitHub Logo](/images/twitter.png)
 
@@ -8,7 +8,7 @@ boot-twitter-feeder and boot-twitter-visualizer spring boot applications.
 
 [boot-twitter-feeder](/boot-twitter-feeder):
 - [queries twitter](https://dev.twitter.com/rest/public/search) ( ex. for tweets with a certain hashtag)
-- tweet sentiment analysis with [CoreNLP](http://nlp.stanford.edu/software/corenlp.shtml) library
+- tweet sentiment analysis with [text-processing.com](http://text-processing.com/docs/sentiment.html)
 - sends the tweet sentiment analysis result to a db and to rabbit
 - spring integration-graph
 ![GitHub Logo](/images/feeder-spring-integration.png)
@@ -37,7 +37,7 @@ Please, use your own twitter credentials. You get them here: https://apps.twitte
 
 ```
 env:
-  twitter_query: '#HillaryClinton'
+  twitter_query: '#WhatEver'
   twitter_oauth_consumerKey: **ENTER YOUR** Consumer Key
   twitter_oauth_consumerSecret: **ENTER YOUR** Consumer Secret
   twitter_oauth_accessToken: ENTER **YOUR Access** Token
