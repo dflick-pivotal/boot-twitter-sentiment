@@ -37,7 +37,7 @@ Please, use your own twitter credentials. You get them here: https://apps.twitte
 
 ```
 env:
-  twitter_query: '#HillaryClinton'
+  twitter_query: '#WhatEver'
   twitter_oauth_consumerKey: **ENTER YOUR** Consumer Key
   twitter_oauth_consumerSecret: **ENTER YOUR** Consumer Secret
   twitter_oauth_accessToken: ENTER **YOUR Access** Token
@@ -62,3 +62,13 @@ export twitter_oauth_accessToken=**ENTER YOUR** Access Token
 export twitter_oauth_accessTokenSecret=**ENTER YOUR** AccessTokenSecret
 ```
 - mvn spring-boot:run
+
+# Demo options
+
+- bind service instances, sentiment service api usage via via bound upsi, scale app (visualizer), show container ip, show bound services, kill visualizer, ...
+- Spring Boot Apps Manager integration
+ + Custom Health Indicator
+ ![GitHub Logo](/images/boot-int.png)
+- PCF Metrics
+  + Custom Metrics via PCF Metrics Forwarder
+  ![GitHub Logo](/images/custom-metrics.png)
