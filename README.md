@@ -65,7 +65,7 @@ export twitter_oauth_accessTokenSecret=**ENTER YOUR** AccessTokenSecret
 
 # Demo options
 
-- bind service instances, sentiment service api usage via via bound upsi, scale app (visualizer), show container ip, show bound services, kill visualizer, ...
+- bind service instances, sentiment service api usage via bound upsi, scale app (visualizer), show container ip, show bound services, kill visualizer, ...
 - Spring Boot Apps Manager integration
  + Custom Health Indicator
  ![GitHub Logo](/images/boot-int.png)
