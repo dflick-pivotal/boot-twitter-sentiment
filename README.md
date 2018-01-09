@@ -63,7 +63,7 @@ export twitter_oauth_accessTokenSecret=**ENTER YOUR** AccessTokenSecret
 ```
 - mvn spring-boot:run
 
-# Demo options
+# Additional demo options
 
 - Spring Boot Actuator Apps Manager integration + [Custom Health Indicator](/boot-twitter-visualizer/src/main/java/io/pivotal/twitter/visualizer/FlappingHealthIndicator.java)
  ![GitHub Logo](/images/boot-int.png)
