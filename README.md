@@ -65,10 +65,7 @@ export twitter_oauth_accessTokenSecret=**ENTER YOUR** AccessTokenSecret
 
 # Demo options
 
-- bind service instances, sentiment service api usage via bound upsi, scale app (visualizer), show container ip, show bound services, kill visualizer, ...
-- Spring Boot Apps Manager integration
- + Custom Health Indicator
+- Spring Boot Actuator Apps Manager integration + [Custom Health Indicator](/boot-twitter-visualizer/src/main/java/io/pivotal/twitter/visualizer/FlappingHealthIndicator.java)
  ![GitHub Logo](/images/boot-int.png)
-- PCF Metrics
-  + Custom Metrics via PCF Metrics Forwarder
+- [Custom Metric](/boot-twitter-visualizer/src/main/java/io/pivotal/twitter/visualizer/service/SentimentService.java) in PCF Metrics via PCF Metrics Forwarder
   ![GitHub Logo](/images/custom-metrics.png)
