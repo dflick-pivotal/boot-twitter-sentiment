@@ -37,7 +37,9 @@ Please, use your own twitter credentials. You get them here: https://apps.twitte
 
 ```
 env:
-  twitter_query: '#HillaryClinton'
+  twitter_query: '#Groko'
+  # twitter_language de or en
+  twitter_language: de
   twitter_oauth_consumerKey: **ENTER YOUR** Consumer Key
   twitter_oauth_consumerSecret: **ENTER YOUR** Consumer Secret
   twitter_oauth_accessToken: ENTER **YOUR Access** Token
@@ -55,7 +57,8 @@ env:
 - mvn spring-boot:run
 - cd spring-boot-feeder
 ```
-export twitter_query='#greenday'
+export twitter_query='#Groko'
+export twitter_language=de
 export twitter_oauth_consumerKey=**ENTER YOUR** Consumer Key
 export twitter_oauth_consumerSecret=**ENTER YOUR** Consumer Secret
 export twitter_oauth_accessToken=**ENTER YOUR** Access Token
