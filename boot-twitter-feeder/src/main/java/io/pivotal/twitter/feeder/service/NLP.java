@@ -12,9 +12,12 @@ import edu.stanford.nlp.util.CoreMap;
  
 public class NLP {
     static StanfordCoreNLP pipeline;
+	static String language;
   
 	@Value("${twitter_language:de}")
-	static String language;
+    public void setLanguage(String str) {
+        language = str;
+    }
 
     public static void init() {
 //        pipeline = new StanfordCoreNLP("StanfordCoreNLP-german.properties");
