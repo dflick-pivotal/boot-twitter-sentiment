@@ -4,7 +4,7 @@ applications:
 - name: visualizer
   host: visualizer
   path: ./boot-twitter-visualizer/target/boot-twitter-visualizer-0.0.1-SNAPSHOT.jar
-  memory: 512M
+  memory: 1G
   services:
   - rabbit
   - db
@@ -13,7 +13,7 @@ applications:
   no-route: true
   path: ./boot-twitter-feeder/target/boot-twitter-feeder-0.0.1-SNAPSHOT.jar
   memory: 1G
-  disk_quota: 2G
+  disk_quota: 2G 
   services:
   - rabbit
   - db
@@ -21,7 +21,7 @@ env:
   twitter_query: '#Groko'
   # twitter_language de or en
   twitter_language: de
-  twitter_oauth_consumerKey: your_consumerKey
-  twitter_oauth_consumerSecret: you_consumerSecret
-  twitter_oauth_accessToken: your_accessToken
-  twitter_oauth_accessTokenSecret: your_accessTokenSecret
+  twitter_oauth_consumerKey: nZKLhvTqTvFMjy2sr28nlwlCU
+  twitter_oauth_consumerSecret: AvbA7b4B985tR21HwRXuFaY4KVpWXRU9AYHuW5SYSokq3wFA0T
+  twitter_oauth_accessToken: 2179211691-9FO0zta7GUetI4qdmURL38882f6lsDTYquSdlnI
+  twitter_oauth_accessTokenSecret: CzvTP2ZJF1xzyNRMucjcbEwaFeuocUYy4xcleRU84gKJQ

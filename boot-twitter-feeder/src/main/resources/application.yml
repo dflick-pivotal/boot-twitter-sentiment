@@ -14,7 +14,7 @@ spring:
 spring:
   profiles: dev    
   datasource:
-    url: jdbc:mysql://localhost/twitter
+    url: jdbc:mysql://localhost/twitter?useSSL=false
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
