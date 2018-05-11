@@ -1,25 +1,26 @@
 ---
-instances: 1
 applications:
 - name: visualizer
-  host: visualizer
   path: ./boot-twitter-visualizer/target/boot-twitter-visualizer-0.0.1-SNAPSHOT.jar
-  memory: 512M
+  memory: 1G
+  random-route: true
   services:
   - rabbit
   - db
+  env:
+    twitter_query: '#Daimler'
 - name: feeder
-  host: feeder
   no-route: true
   path: ./boot-twitter-feeder/target/boot-twitter-feeder-0.0.1-SNAPSHOT.jar
   memory: 1G
+  disk_quota: 2G 
   services:
   - rabbit
   - db
-env:
-  twitter_query: '#ford'
-#  twitter_query: '#MercedesMe'
-  twitter_oauth_consumerKey: your_consumerKey
-  twitter_oauth_consumerSecret: you_consumerSecret
-  twitter_oauth_accessToken: your_accessToken
-  twitter_oauth_accessTokenSecret: your_accessTokenSecret
+  env:
+    twitter_query: '#Daimler'
+    twitter_oauth_consumerKey: XXX
+    twitter_oauth_consumerSecret: XXX
+    twitter_oauth_accessToken: XXX
+    twitter_oauth_accessTokenSecret: XXX
+#    JAVA_OPTS: "-Dhttp.proxyHost=<SEC-PROXY> -Dhttp.proxyPort=<PORT> -Dhttps.proxyHost=<SEC-PROXY> -Dhttps.proxyPort=<PORT>"
